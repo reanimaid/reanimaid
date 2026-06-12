@@ -15,6 +15,7 @@
             --deep-lavender: #b39cd0;
             --white: #ffffff;
             --text-color: #5a4b5e;
+            --gem-shine: linear-gradient(110deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 70%);
         }
 
         /* ベーススタイル */
@@ -27,8 +28,16 @@
             line-height: 1.8;
         }
 
-        /* 背景フレーム設定 */
+        /* 高品質パーティクルCanvas */
+        #particle-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; pointer-events: none;
+        }
+
+        /* サイト全体の背景 & フレーム */
         .site-wrapper {
+            position: relative;
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
                 url('frame.png');
@@ -39,7 +48,7 @@
             padding: 10px;
         }
 
-        /* 外枠 */
+        /* 外枠フレーム */
         .outer-border {
             position: fixed;
             top: 10px; left: 10px; right: 10px; bottom: 10px;
@@ -55,36 +64,85 @@
             max-width: 480px;
             margin: 0 auto;
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
 
+        /* セクション共通デザイン */
         section {
             background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border-radius: 25px;
-            padding: 30px 20px;
+            padding: 35px 20px;
             margin-bottom: 40px;
             border: 1px solid rgba(255, 183, 213, 0.3);
             box-shadow: 0 10px 30px rgba(226, 209, 249, 0.2);
         }
 
         .section-title {
-            text-align: center;
-            color: var(--deep-lavender);
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 25px;
+            text-align: center; color: var(--deep-lavender);
+            font-size: 1.5rem; font-weight: 800; margin-bottom: 25px;
         }
 
         /* ①ファーストビュー */
-        #hero { background: none; border: none; box-shadow: none; backdrop-filter: none; text-align: center; padding: 60px 0 20px; }
-        .hero-logo { width: 100%; max-width: 320px; margin-bottom: 30px; animation: float 4s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        #hero {
+            background: none; border: none; box-shadow: none; backdrop-filter: none;
+            text-align: center; padding: 60px 0 20px;
+        }
+        .hero-logo {
+            width: 90%; max-width: 320px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
         .hero-copy { font-size: 1.1rem; font-weight: 800; line-height: 2; margin-bottom: 30px; }
-        .btn-common { display: inline-block; background: linear-gradient(135deg, var(--soft-lavender), var(--primary-pink)); color: #fff; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 800; box-shadow: 0 5px 15px rgba(255, 183, 213, 0.5); }
+
+        /* 高級ゲームUI風ボタン */
+        .game-btn {
+            position: relative;
+            display: inline-block;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            color: #fff;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+            box-shadow: 0 0 15px rgba(255, 183, 213, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .btn-line { background: linear-gradient(135deg, #06C755, #05a34b); animation: glowGreen 2.5s infinite; }
+        .btn-live { background: linear-gradient(135deg, var(--soft-lavender), var(--primary-pink)); animation: glowPink 2.5s infinite; }
+
+        @keyframes glowPink {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 183, 213, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 183, 213, 0.8); }
+        }
+        @keyframes glowGreen {
+            0%, 100% { box-shadow: 0 0 10px rgba(6, 199, 85, 0.4); }
+            50% { box-shadow: 0 0 20px rgba(6, 199, 85, 0.7); }
+        }
+
+        .game-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: var(--gem-shine);
+        }
+        .game-btn:hover::after {
+            left: 100%;
+            transition: left 0.7s ease-in-out;
+        }
+        .game-btn:hover { transform: scale(1.05); }
 
         /* ③メンバー紹介 */
-        .member-card { background: #fff; border-radius: 20px; overflow: hidden; margin-bottom: 30px; border: 2px solid var(--soft-lavender); }
+        .member-card {
+            background: #fff; border-radius: 20px; overflow: hidden;
+            margin-bottom: 30px; border: 2px solid var(--soft-lavender);
+        }
         .member-img { width: 100%; display: block; }
         .member-info { padding: 20px; text-align: center; }
         .member-name { font-size: 1.4rem; font-weight: 800; }
@@ -114,13 +172,13 @@
         summary { font-weight: bold; cursor: pointer; outline: none; font-size: 0.95rem; }
         .faq-ans { margin-top: 10px; font-size: 0.9rem; color: #666; }
 
-        /* ⑨CTA セクションデザイン統一 */
         #cta { text-align: center; }
-
         footer { text-align: center; padding: 40px 0; min-height: 40px; }
     </style>
 </head>
 <body>
+
+<canvas id="particle-canvas"></canvas>
 
 <div class="site-wrapper">
     <div class="outer-border"></div>
@@ -134,11 +192,15 @@
                 画面の向こう側から、あなたを迎えに来た。<br>
                 現実に、2次元の衝撃を。
             </div>
-            <div data-aos="fade-up" data-aos-delay="200">
-                <a href="https://lin.ee/nVD7MfS"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="45" border="0"></a>
+            <div data-aos="fade-up" data-aos-delay="200" style="margin-bottom: 20px;">
+                <a href="https://lin.ee/nVD7MfS" class="game-btn btn-line">
+                    公式LINE 友だち追加
+                </a>
             </div>
-            <div data-aos="fade-up" data-aos-delay="400" style="margin-top:15px;">
-                <a href="https://timetr.ee/p/reanimaid" class="btn-common">ライブ情報を見る</a>
+            <div data-aos="fade-up" data-aos-delay="400">
+                <a href="https://timetr.ee/p/reanimaid" class="game-btn btn-live">
+                    ライブスケジュール
+                </a>
             </div>
         </section>
 
@@ -147,12 +209,12 @@
             <h2 class="section-title">CONCEPT</h2>
             <div style="text-align: center; font-size: 0.9rem;">
                 <p>画面の向こう側から、あなたを迎えに来た。<br>現実に、2次元の衝撃を。</p>
-                <p style="margin-top: 15px;">アニメやゲームの世界から飛び出してきたような少女たちが、現実世界であなたと出会う</p>
+                <p style="margin-top: 15px;">アニメやゲームの世界から飛び出してきたような少女たちが、現実世界であなたと出会う。</p>
                 <p>2次元と現実の境界を超える物語をテーマにしている。</p>
             </div>
         </section>
 
-        <!-- ③メンバー紹介 -->
+        <!-- ③MEMBERS -->
         <section id="members" data-aos="fade-up">
             <h2 class="section-title">MEMBERS</h2>
             <div class="member-card" data-aos="fade-right">
@@ -184,7 +246,7 @@
             </div>
         </section>
 
-        <!-- ④ライブガイド -->
+        <!-- ④LIVE GUIDE -->
         <section id="guide" data-aos="fade-up">
             <h2 class="section-title">LIVE GUIDE</h2>
             <p style="text-align: center; font-size: 0.8rem; margin-bottom: 20px;">画面の向こう側を、現実で体験するための案内</p>
@@ -237,12 +299,12 @@
             </div>
         </section>
 
-        <!-- ⑤ポイントカード -->
+        <!-- ⑤POINT CARD -->
         <section id="passport" data-aos="fade-up">
             <h2 class="section-title">POINT CARD</h2>
             <div class="passport-card">
                 <h3>次元接続パスポート<br>（ポイントカード）</h3>
-                <p style="font-size: 0.7rem; opacity: 0.8;">画面の向こう側へ、もっと近づくための接続案内</p>
+                <p style="font-size: 0.75rem; opacity: 0.8;">画面の向こう側へ、もっと近づくための接続案内</p>
                 <p style="font-size: 0.8rem; margin-top: 5px; color: var(--primary-pink);">お会計¥2,000ごとに1ポイント付与。</p>
                 <div class="point-table">
                     <div class="point-row"><span>5 pt</span><span>2ショット写メ券</span></div>
@@ -254,10 +316,10 @@
                 </div>
             </div>
 
-            <!-- 公式LINE案内とボタン -->
+            <!-- 修正箇所：ポイントカード管理案内とボタン -->
             <div style="text-align: center; margin-bottom: 20px;">
                 <p style="font-weight: bold; font-size: 0.9rem; margin-bottom: 10px;">ポイントカードは公式ラインで管理できます</p>
-                <a href="https://lin.ee/nVD7MfS"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>
+                <a href="https://lin.ee/nVD7MfS" class="game-btn btn-line" style="padding: 12px 30px; font-size: 0.85rem;">公式LINE 友達追加</a>
             </div>
 
             <div style="font-size: 0.85rem; padding: 10px;">
@@ -266,7 +328,7 @@
                     <li>公式スケジュール</li>
                     <li>次元接続パスポート<br>（ポイントカード）管理</li>
                 </ul>
-                <p style="margin-top:10px;">などをお届けします♥ ポイントカード、公式X、公式イベントスケジュールも確認できます！</p>
+                <p style="margin-top:10px;">などをお届けします♥ 公式X、イベントスケジュールも確認できます！</p>
             </div>
             <div style="margin-top: 15px; background: #f9f9f9; padding: 15px; border-radius: 15px; font-size: 0.8rem; border: 1px solid #eee;">
                 <p><strong>次元通行許可証とは？</strong></p>
@@ -275,16 +337,16 @@
             </div>
         </section>
 
-        <!-- カレンダー -->
+        <!-- CALENDAR -->
         <section id="calendar" data-aos="fade-up">
             <h2 class="section-title">CALENDAR</h2>
             <p style="text-align: center; font-size: 0.85rem; margin-bottom: 20px;">最新のイベントスケジュールはこちら</p>
             <div style="text-align: center;">
-                <a href="https://timetr.ee/p/reanimaid" class="btn-common">イベントカレンダーを見る</a>
+                <a href="https://timetr.ee/p/reanimaid" class="game-btn btn-live">カレンダーを開く</a>
             </div>
         </section>
 
-        <!-- ⑥FAQ（修正箇所） -->
+        <!-- ⑥FAQ -->
         <section id="faq" data-aos="fade-up">
             <h2 class="section-title">FAQ</h2>
             <details>
@@ -292,8 +354,8 @@
                 <div class="faq-ans">もちろんです！スタッフが丁寧にご案内しますのでお気軽にリアニメイドに会いに来てください♡</div>
             </details>
             <details>
-                <summary>一人参加でも大丈夫？女性でも大丈夫？</summary>
-                <div class="faq-ans">女性の方も、おひとり様で参加される方もたくさんいらっしゃいます！安心してお楽しみください</div>
+                <summary>一人参加でも大丈夫？女性が会いに行ってもいい？</summary>
+                <div class="faq-ans">女性の方も、おひとり様で参加される方もたくさんいらっしゃいます！安心してお楽しみください♡</div>
             </details>
             <details>
                 <summary>チェキとは？</summary>
@@ -306,7 +368,7 @@
             <h2 class="section-title">次元接続を確認しました___</h2>
             <p style="text-align: center; margin-bottom: 20px;">最新のスケジュールやポイントカード機能も充実</p>
             <div style="text-align: center;">
-                <a href="https://lin.ee/nVD7MfS"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="60" border="0"></a>
+                <a href="https://lin.ee/nVD7MfS" class="game-btn btn-line">公式LINE 友だち追加</a>
             </div>
         </section>
 
@@ -315,6 +377,63 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>AOS.init({ duration: 1000, once: true });</script>
+<script>
+    AOS.init({ duration: 1000, once: true });
+
+    /* --- High Quality Particle System --- */
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, particles;
+
+    const colors = ['rgba(226, 209, 249, ', 'rgba(255, 183, 213, ', 'rgba(255, 255, 255, '];
+
+    class Particle {
+        constructor() { this.init(); }
+        init() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.radius = Math.random() * 2 + 0.5;
+            this.colorBase = colors[Math.floor(Math.random() * colors.length)];
+            this.opacity = Math.random() * 0.5 + 0.1;
+            this.vx = (Math.random() - 0.5) * 0.25;
+            this.vy = (Math.random() - 0.5) * 0.25;
+            this.sparkle = Math.random() > 0.85;
+            this.sparkleLife = Math.random() * Math.PI;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            let currentOpacity = this.opacity;
+            if (this.sparkle) {
+                this.sparkleLife += 0.04;
+                currentOpacity += Math.sin(this.sparkleLife) * 0.3;
+            }
+            ctx.fillStyle = this.colorBase + Math.max(0, currentOpacity) + ')';
+            ctx.fill();
+        }
+        update() {
+            this.x += this.vx; this.y += this.vy;
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+            this.draw();
+        }
+    }
+
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        particles = Array.from({length: 65}, () => new Particle());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => p.update());
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    animate();
+</script>
 </body>
 </html>
