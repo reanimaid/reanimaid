@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>リアニメイド Official Web Site | 現実に、2次元の衝撃を。</title>
+    <title>リアニメイド Official Web Site | ここは、あなたと”次元”を繋ぐ場所。</title>
+    
+    <!-- ホーム画面用アイコン・PWA設定 -->
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffb7d5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="リアニメイド">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -18,7 +28,6 @@
             --gem-shine: linear-gradient(110deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 70%);
         }
 
-        /* ベーススタイル */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -56,7 +65,6 @@
             z-index: 10;
         }
 
-        /* セクション共通デザイン */
         section {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
@@ -89,52 +97,40 @@
         }
         .hero-copy { font-size: 1.1rem; font-weight: 800; line-height: 2; margin-bottom: 30px; }
 
-        /* 高級ゲームUI風ボタン */
+        /* 高級ボタン共通 */
         .game-btn {
-            position: relative;
-            display: inline-block;
-            padding: 18px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            color: #fff;
-            overflow: hidden;
+            position: relative; display: inline-block; padding: 18px 45px; border-radius: 50px;
+            text-decoration: none; font-weight: 800; color: #fff; overflow: hidden;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
-            box-shadow: 0 0 15px rgba(255, 183, 213, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 15px rgba(255, 183, 213, 0.4); border: 1px solid rgba(255, 255, 255, 0.4);
         }
         .btn-line { background: linear-gradient(135deg, #06C755, #05a34b); animation: glowGreen 2.5s infinite; }
         .btn-live { background: linear-gradient(135deg, var(--soft-lavender), var(--primary-pink)); animation: glowPink 2.5s infinite; }
         
-        .sns-container { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
-        .sns-btn {
-            position: relative;
-            display: flex; align-items: center; justify-content: center;
-            width: 105px; padding: 12px 0; border-radius: 30px;
-            text-decoration: none; font-weight: 800; font-size: 0.7rem; color: #fff;
-            overflow: hidden; 
-            background: linear-gradient(135deg, #ffdeed 0%, #ffb7d5 100%);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 4px 15px rgba(255, 183, 213, 0.4), inset 0 0 8px rgba(255,255,255,0.5);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
+        @keyframes glowPink { 0%, 100% { box-shadow: 0 0 10px rgba(255, 183, 213, 0.5); } 50% { box-shadow: 0 0 20px rgba(255, 183, 213, 0.8); } }
+        @keyframes glowGreen { 0%, 100% { box-shadow: 0 0 10px rgba(6, 199, 85, 0.4); } 50% { box-shadow: 0 0 20px rgba(6, 199, 85, 0.7); } }
 
         .game-btn::after, .sns-btn::after {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
             background: var(--gem-shine);
         }
         .game-btn:hover::after, .sns-btn:hover::after { left: 100%; transition: left 0.7s ease-in-out; }
-        .game-btn:hover, .sns-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 183, 213, 0.6); }
+        .game-btn:hover, .sns-btn:hover { transform: scale(1.05); }
 
-        /* 重要項目の強調（薄ピンク背景＋白文字） */
+        /* 重要項目の強調（ピンク背景タグ） */
         .text-highlight-pink {
-            background-color: var(--primary-pink); /* ご指示の通り薄ピンクへ変更 */
-            color: #ffffff;
-            padding: 1px 6px;
-            border-radius: 4px;
-            font-weight: bold;
-            display: inline-block;
-            margin: 0 2px;
+            background-color: var(--primary-pink); color: #ffffff;
+            padding: 1px 6px; border-radius: 4px; font-weight: bold; display: inline-block; margin: 0 2px;
+        }
+
+        /* SNS用ボタン */
+        .sns-container { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
+        .sns-btn {
+            position: relative; display: flex; align-items: center; justify-content: center;
+            width: 105px; padding: 12px 0; border-radius: 30px; text-decoration: none; font-weight: 800; font-size: 0.7rem; color: #fff;
+            overflow: hidden; background: linear-gradient(135deg, #ffdeed 0%, #ffb7d5 100%);
+            border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 4px 15px rgba(255, 183, 213, 0.4), inset 0 0 8px rgba(255,255,255,0.5);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         /* メンバー紹介 */
@@ -151,9 +147,7 @@
         summary::-webkit-details-marker { display: none; }
         summary::before { content: '▶'; font-size: 0.7rem; margin-right: 10px; color: var(--primary-pink); transition: transform 0.3s; }
         details[open] summary::before { transform: rotate(90deg); }
-
         .details-content { margin-top: 15px; border-top: 1px dashed var(--soft-lavender); padding-top: 15px; }
-
         .guide-list { list-style: none; }
         .guide-list li { font-size: 0.9rem; margin-bottom: 8px; padding-left: 1.2em; position: relative; }
         .guide-list li::before { content: '♡'; position: absolute; left: 0; color: var(--primary-pink); font-weight: bold; }
@@ -169,7 +163,25 @@
         .point-table { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-top: 15px; }
         .point-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.2); font-size: 0.9rem; }
 
-        #cta { text-align: center; }
+        /* PWA誘導ポップアップUI */
+        .pwa-prompt {
+            position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%) translateY(150%);
+            width: calc(100% - 40px); max-width: 400px; background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); border: 2px solid var(--primary-pink); border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 183, 213, 0.5); z-index: 10001;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); padding: 20px;
+        }
+        .pwa-prompt.show { transform: translateX(-50%) translateY(0); }
+        .pwa-header { display: flex; align-items: center; margin-bottom: 10px; }
+        .pwa-title { font-weight: 800; font-size: 0.95rem; color: var(--deep-lavender); flex-grow: 1; margin: 0; }
+        .pwa-close { background: none; border: none; font-size: 1.5rem; color: #ccc; cursor: pointer; padding: 0 5px; }
+        .pwa-text { font-size: 0.8rem; line-height: 1.5; margin-bottom: 15px; }
+        .pwa-ios-guide { background: #fff5f8; padding: 10px; border-radius: 12px; font-size: 0.75rem; text-align: center; border: 1px dashed var(--primary-pink); }
+
+        /* CTA */
+        .cta-title { font-size: 1.2rem; font-weight: 800; color: var(--deep-lavender); margin-bottom: 5px; text-align: center; }
+        .cta-subtext { font-size: 0.85rem; text-align: center; margin-bottom: 25px; }
+
         footer { text-align: center; padding: 40px 0; min-height: 40px; }
     </style>
 </head>
@@ -180,7 +192,7 @@
 
     <div class="container">
         
-        <!-- ①ファーストビュー -->
+        <!-- ①ファーストビュー（一斉表示同期済み） -->
         <section id="hero">
             <img src="logo.png" alt="リアニメイド" class="hero-logo" data-aos="zoom-in" data-aos-delay="0">
             <div class="hero-copy" data-aos="fade-up" data-aos-delay="0">
@@ -203,7 +215,7 @@
             <h2 class="section-title">CONCEPT</h2>
             <div style="text-align: center; font-size: 0.9rem;">
                 <p>画面の向こう側から、あなたを迎えに来た。<br>現実に、2次元の衝撃を。</p>
-                <p style="margin-top: 15px;">アニメやゲームの世界から飛び出してきたような少女たちたちが、現実世界であなたと出会う。</p>
+                <p style="margin-top: 15px;">アニメやゲームの世界から飛び出してきたような少女たちが、現実世界であなたと出会う。</p>
                 <p>2次元と現実の境界を超える物語をテーマにしている。</p>
             </div>
         </section>
@@ -222,6 +234,7 @@
         <!-- ③MEMBERS -->
         <section id="members" data-aos="fade-up">
             <h2 class="section-title">MEMBERS</h2>
+            <!-- 各メンバーカード（略：前回と同じ構成） -->
             <div class="member-card" data-aos="fade-right">
                 <img src="remo.png" alt="黒音れも" class="member-img">
                 <div class="member-info">
@@ -345,13 +358,6 @@
                 <p style="font-weight: bold; font-size: 0.9rem; margin-bottom: 10px;">ポイントカードは公式ラインで管理できます</p>
                 <a href="https://lin.ee/nVD7MfS" class="game-btn btn-line" style="padding: 12px 30px; font-size: 0.85rem;">公式LINE 友達追加</a>
             </div>
-            <div style="font-size: 0.85rem; padding: 10px;">
-                <p><strong>公式LINE</strong></p>
-                <ul class="guide-list">
-                    <li>公式スケジュール</li>
-                    <li>次元接続パスポート<br>（ポイントカード）管理</li>
-                </ul>
-            </div>
             <div style="margin-top: 15px; background: #f9f9f9; padding: 15px; border-radius: 15px; font-size: 0.8rem; border: 1px solid #eee;">
                 <p><strong>次元通行許可証とは？</strong></p>
                 <p>リアニメイドとの“次元接続”を証明する特別認定証。選ばれし者だけが手にできる、特別なカードです。</p>
@@ -395,12 +401,60 @@
     </div>
 </div>
 
+<!-- ホーム画面追加誘導ポップアップ -->
+<div id="pwa-install-prompt" class="pwa-prompt">
+    <div class="pwa-content">
+        <div class="pwa-header">
+            <p class="pwa-title">✨ 次元接続をホーム画面に保存</p>
+            <button class="pwa-close" onclick="closePwaPrompt()">×</button>
+        </div>
+        <p class="pwa-text">ホーム画面に追加すると、いつでも瞬時に”次元接続”ができるようになります♡</p>
+        <button id="pwa-button-android" class="game-btn btn-line" style="display:none; width:100%; padding:10px; font-size:0.8rem; border:none;">インストールする</button>
+        <div id="pwa-guide-ios" class="pwa-ios-guide" style="display:none;">
+            下メニューの <img src="https://img.icons8.com/ios/50/000000/share-rounded.png" width="16" style="vertical-align:middle; filter:invert(47%) sepia(85%) saturate(415%) hue-rotate(301deg) brightness(97%) contrast(92%);"> を押して<br>「<strong>ホーム画面に追加</strong>」を選択してね♡
+        </div>
+    </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
-    AOS.init({ 
-        duration: 1000, 
-        once: true,
-        easing: 'ease-out-back'
+    AOS.init({ duration: 1000, once: true, easing: 'ease-out-back' });
+
+    let deferredPrompt;
+    const pwaPrompt = document.getElementById('pwa-install-prompt');
+    const androidBtn = document.getElementById('pwa-button-android');
+    const iosGuide = document.getElementById('pwa-guide-ios');
+
+    function closePwaPrompt() {
+        pwaPrompt.classList.remove('show');
+        sessionStorage.setItem('pwa-dismissed', 'true');
+    }
+
+    window.addEventListener('load', () => {
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+        if (isStandalone || sessionStorage.getItem('pwa-dismissed')) return;
+
+        const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+        setTimeout(() => {
+            if (isIos) {
+                iosGuide.style.display = 'block';
+                pwaPrompt.classList.add('show');
+            }
+        }, 3000);
+    });
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (!sessionStorage.getItem('pwa-dismissed')) {
+            androidBtn.style.display = 'block';
+            pwaPrompt.classList.add('show');
+        }
+        androidBtn.addEventListener('click', async () => {
+            pwaPrompt.classList.remove('show');
+            deferredPrompt.prompt();
+            deferredPrompt = null;
+        });
     });
 </script>
 </body>
