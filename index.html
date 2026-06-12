@@ -75,9 +75,23 @@
             box-shadow: 0 10px 30px rgba(226, 209, 249, 0.2);
         }
 
+        /* 見出しデザイン：点々のアンダーバー */
         .section-title {
             text-align: center; color: var(--deep-lavender);
             font-size: 1.5rem; font-weight: 800; margin-bottom: 25px;
+            display: table; margin-left: auto; margin-right: auto; /* 文字幅に合わせる */
+            border-bottom: 3px dotted var(--primary-pink);
+            padding-bottom: 5px;
+        }
+
+        /* 小見出し用の点々アンダーバー */
+        .sub-dotted-title {
+            display: inline-block;
+            border-bottom: 2px dotted var(--primary-pink);
+            padding-bottom: 2px;
+            margin-bottom: 10px;
+            font-weight: 800;
+            color: var(--deep-lavender);
         }
 
         /* ①ファーストビュー */
@@ -133,7 +147,7 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        /* ライブガイド：キーワードバッジ */
+        /* ライブガイド：バッジ */
         .welcome-badge-container {
             display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 5px;
         }
@@ -176,7 +190,7 @@
         .point-table { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-top: 15px; }
         .point-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.2); font-size: 0.9rem; }
 
-        /* PWA誘導ポップアップUI */
+        /* PWA誘導ポップアップ UI */
         .pwa-prompt {
             position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%) translateY(150%);
             width: calc(100% - 40px); max-width: 400px; background: rgba(255, 255, 255, 0.95);
@@ -191,7 +205,7 @@
         .pwa-text { font-size: 0.8rem; line-height: 1.5; margin-bottom: 15px; }
         .pwa-ios-guide { background: #fff5f8; padding: 10px; border-radius: 12px; font-size: 0.75rem; text-align: center; border: 1px dashed var(--primary-pink); }
 
-        /* CTA */
+        /* CTA用文字調整 */
         .cta-title { font-size: 1.2rem; font-weight: 800; color: var(--deep-lavender); margin-bottom: 5px; text-align: center; }
         .cta-subtext { font-size: 0.85rem; text-align: center; margin-bottom: 25px; }
 
@@ -300,17 +314,16 @@
                         <span class="welcome-badge">ペンライト</span>
                         <span class="welcome-badge">手拍子</span>
                         <span class="welcome-badge">コール</span>
-                        <span class="welcome-badge">名前を叫ぶ</span> <!-- 新項目 -->
+                        <span class="welcome-badge">名前を叫ぶ</span>
                         <span class="welcome-badge">一緒に踊る</span>
                         <span class="welcome-badge">見て楽しむ</span>
-                        <span class="welcome-badge">撮影（スマホ・カメラOK）</span> <!-- 修正項目 -->
+                        <span class="welcome-badge">撮影（スマホ・カメラOK）</span>
                         <span class="welcome-badge">推しカメラ</span>
                         <span class="welcome-badge">初見さん</span>
                         <span class="welcome-badge">おひとり様</span>
                         <span class="welcome-badge">複数名様</span>
                     </div>
                     <p class="welcome-message">その他迷惑行為以外 全て大歓迎♥</p>
-                    
                     <ul class="guide-list" style="margin-top: 15px;">
                         <li>ライブ中の撮影ルールは会場ごとに異なります（<span class="text-highlight-pink">リアニメイドは基本撮影OK</span>）</li>
                     </ul>
@@ -343,18 +356,6 @@
                     <img src="goods.jpg" alt="チェキ撮影券案内" class="guide-image">
                 </div>
             </details>
-
-            <div style="background: #fff5f8; border-radius: 20px; padding: 15px; border: 1.5px solid var(--primary-pink); margin-top: 20px;">
-                <h3 style="color: var(--deep-lavender); font-size: 1.1rem; margin-bottom: 10px; border-left: 5px solid var(--primary-pink); padding-left: 10px;">
-                    次元維持のためのお願い<br>（注意事項）
-                </h3>
-                <ul class="guide-list">
-                    <li>メンバーへの迷惑行為禁止</li>
-                    <li>スタッフの案内にご協力ください</li>
-                    <li>他のお客様への配慮をお願いします★</li>
-                </ul>
-                <p style="text-align: center; font-weight: bold; font-size: 0.8rem; margin-top: 10px;">ルールを守って楽しい次元接続を</p>
-            </div>
         </section>
 
         <!-- ⑤POINT CARD -->
@@ -383,7 +384,7 @@
                 <a href="https://lin.ee/nVD7MfS" class="game-btn btn-line" style="padding: 12px 30px; font-size: 0.85rem;">公式LINE 友達追加</a>
             </div>
             <div style="margin-top: 15px; background: #f9f9f9; padding: 15px; border-radius: 15px; font-size: 0.8rem; border: 1px solid #eee;">
-                <p><strong>次元通行許可証とは？</strong></p>
+                <p class="sub-dotted-title">次元通行許可証とは？</p>
                 <p>リアニメイドとの“次元接続”を証明する特別認定証. 選ばれし者だけが手にできる、特別なカードです.</p>
                 <p style="margin-top: 10px;">今後… ♥限定イベント ♥限定プレゼント ♥特別企画 なども検討中♥</p>
             </div>
@@ -403,13 +404,26 @@
                 <div class="faq-ans">もちろんです！スタッフが丁寧にご案内しますのでお気軽にリアニメイドに会いに来てください♡</div>
             </details>
             <details>
-                <summary>一人参加でも大丈夫？女性が会いに行ってもいい？</summary>
+                <summary>一人参加 farm 丈夫？女性が会いに行ってもいい？</summary>
                 <div class="faq-ans">女性の方も、おひとり様で参加される方もたくさんいらっしゃいます！安心してお楽しみください♡</div>
             </details>
             <details>
                 <summary>チェキとは？</summary>
                 <div class="faq-ans">メンバーと撮影できるインスタントカメラでの写真です. その場でサインやコメントが入ります！</div>
             </details>
+        </section>
+
+        <!-- 注意事項セクション -->
+        <section id="precautions" data-aos="fade-up" style="background: #fff5f8; border: 1.5px solid var(--primary-pink);">
+            <h3 class="sub-dotted-title" style="border-left: 5px solid var(--primary-pink); padding-left: 10px; border-bottom: none; display: block; border-bottom: 2px dotted var(--primary-pink); width: fit-content;">
+                次元維持のためのお願い<br>（注意事項）
+            </h3>
+            <ul class="guide-list">
+                <li>メンバーへの迷惑行為禁止</li>
+                <li>スタッフの案内にご協力ください</li>
+                <li>他のお客様への配慮をお願いします★</li>
+            </ul>
+            <p style="text-align: center; font-weight: bold; font-size: 0.8rem; margin-top: 10px; color: var(--primary-pink);">ルールを守って楽しい次元接続を</p>
         </section>
 
         <!-- ⑨CTA -->
