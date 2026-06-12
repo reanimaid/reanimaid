@@ -28,15 +28,11 @@
             line-height: 1.8;
         }
 
-        /* サイト全体の背景 & フレーム */
+        /* 背景：幻想的な薄ピンクのグラデーション */
         .site-wrapper {
             position: relative;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
-                url('frame.png');
-            background-size: cover;
+            background: linear-gradient(135deg, #fff5f9 0%, #ffedf4 50%, #f7efff 100%);
             background-attachment: fixed;
-            background-position: center;
             min-height: 100vh;
             padding: 10px;
         }
@@ -83,7 +79,7 @@
         }
         .hero-logo {
             width: 90%; max-width: 320px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
             animation: float 4s ease-in-out infinite;
         }
@@ -110,7 +106,6 @@
         .btn-line { background: linear-gradient(135deg, #06C755, #05a34b); animation: glowGreen 2.5s infinite; }
         .btn-live { background: linear-gradient(135deg, var(--soft-lavender), var(--primary-pink)); animation: glowPink 2.5s infinite; }
         
-        /* SNS用ボタン（すべて薄ピンクで統一） */
         .sns-container { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
         .sns-btn {
             position: relative;
@@ -142,9 +137,15 @@
         .member-color { display: inline-block; padding: 2px 15px; border-radius: 10px; color: #fff; font-size: 0.8rem; margin: 10px 0; }
         .x-button { display: block; width: 140px; margin: 10px auto 0; background: #000; color: #fff; text-decoration: none; padding: 8px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
 
-        /* ライブガイド */
-        .guide-box { background: #fff; border: 1.5px solid var(--primary-pink); border-radius: 20px; padding: 20px; margin-bottom: 20px; }
-        .guide-box h3 { color: var(--deep-lavender); font-size: 1.1rem; margin-bottom: 15px; border-left: 5px solid var(--primary-pink); padding-left: 10px; }
+        /* ガイド & FAQ アコーディオン */
+        details { background: #fff; border: 1px solid var(--primary-pink); border-radius: 20px; padding: 15px; margin-bottom: 15px; overflow: hidden; }
+        summary { font-weight: bold; cursor: pointer; outline: none; list-style: none; color: var(--deep-lavender); display: flex; align-items: center; }
+        summary::-webkit-details-marker { display: none; }
+        summary::before { content: '▶'; font-size: 0.7rem; margin-right: 10px; color: var(--primary-pink); transition: transform 0.3s; }
+        details[open] summary::before { transform: rotate(90deg); }
+
+        .details-content { margin-top: 15px; border-top: 1px dashed var(--soft-lavender); padding-top: 15px; }
+
         .guide-list { list-style: none; }
         .guide-list li { font-size: 0.9rem; margin-bottom: 8px; padding-left: 1.2em; position: relative; }
         .guide-list li::before { content: '♡'; position: absolute; left: 0; color: var(--primary-pink); font-weight: bold; }
@@ -160,12 +161,6 @@
         .point-table { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-top: 15px; }
         .point-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.2); font-size: 0.9rem; }
 
-        /* FAQ */
-        details { background: #fff; border: 1px solid var(--soft-lavender); border-radius: 10px; padding: 15px; margin-bottom: 10px; }
-        summary { font-weight: bold; cursor: pointer; outline: none; font-size: 0.95rem; }
-        .faq-ans { margin-top: 10px; font-size: 0.9rem; color: #666; }
-
-        /* CTA */
         .cta-title { font-size: 1.2rem; font-weight: 800; color: var(--deep-lavender); margin-bottom: 5px; text-align: center; }
         .cta-subtext { font-size: 0.85rem; text-align: center; margin-bottom: 25px; }
 
@@ -180,12 +175,11 @@
 
     <div class="container">
         
-        <!-- ①ファーストビュー（一斉表示） -->
+        <!-- ①ファーストビュー -->
         <section id="hero">
             <img src="logo.png" alt="リアニメイド" class="hero-logo" data-aos="zoom-in" data-aos-delay="0">
             <div class="hero-copy" data-aos="fade-up" data-aos-delay="0">
-                画面の向こう側から、あなたを迎えに来た。<br>
-                現実に、2次元の衝撃を。
+                ここは、あなたと”次元”を繋ぐ場所。
             </div>
             <div data-aos="fade-up" data-aos-delay="0" style="margin-bottom: 20px;">
                 <a href="https://lin.ee/nVD7MfS" class="game-btn btn-line">
@@ -209,7 +203,7 @@
             </div>
         </section>
 
-        <!-- OFFICIAL SNS（薄ピンクで統一） -->
+        <!-- OFFICIAL SNS -->
         <section id="official-sns" data-aos="fade-up" style="text-align: center;">
             <h2 class="section-title">OFFICIAL SNS</h2>
             <img src="group.jpg" alt="リアニメイド 集合写真" style="width: 100%; border-radius: 15px; margin-bottom: 20px; border: 2px solid var(--soft-lavender);">
@@ -221,7 +215,7 @@
             </div>
         </section>
 
-        <!-- ③メンバー紹介 -->
+        <!-- ③MEMBERS -->
         <section id="members" data-aos="fade-up">
             <h2 class="section-title">MEMBERS</h2>
             <div class="member-card" data-aos="fade-right">
@@ -253,50 +247,65 @@
             </div>
         </section>
 
-        <!-- ④ライブガイド -->
+        <!-- ④LIVE GUIDE -->
         <section id="guide" data-aos="fade-up">
             <h2 class="section-title">LIVE GUIDE</h2>
             <p style="text-align: center; font-size: 0.8rem; margin-bottom: 20px;">画面の向こう側を、現実で体験するための案内</p>
-            <div class="guide-box">
-                <h3>入場について</h3>
-                <ul class="guide-list">
-                    <li>入口受付でチケットを確認</li>
-                    <li>入場の仕方はスタッフの案内に従ってください</li>
-                    <li>お目当てグループを聞かれたら「リアニメイド」とお伝えください</li>
-                    <li>お目当て特典がある会場では特典が受け取れます</li>
-                    <li>ライブ中の撮影ルールは会場ごとに異なります（リアニメイドは基本撮影OK）</li>
-                </ul>
-            </div>
-            <div class="guide-box">
-                <h3>ライブについて</h3>
-                <img src="guide1.jpg" alt="ライブガイド" class="guide-image">
-                <p style="font-size: 0.8rem; line-height: 2;">
-                    ペンライト / 手拍子 / コール / 一緒に踊る / 見て楽しむ / 撮影（スマホ・カメラOK） / 推しカメラ / 初見さん / おひとり様でも複数名様でも / その他迷惑行為以外 <strong>全て大歓迎♥</strong>
-                </p>
-            </div>
-            <div class="guide-box">
-                <h3>特典会について</h3>
-                <img src="guide2.jpg" alt="特典会ガイド" class="guide-image">
-                <ul class="guide-list">
-                    <li>お目当て入場特典券をお持ちの方は、リアニメイドスタッフに渡してください</li>
-                    <li>チェキ券を購入（1枚¥1,500）</li>
-                    <li>特典会は現金のみ使用可能なので注意</li>
-                    <li>撮りたいメンバーの列へ並ぶ</li>
-                    <li>最後尾に並んでいる方が最後尾札を持っていたら受け取る</li>
-                    <li>順番が来たらチェキ券を渡す（スタッフの案内に従ってください）</li>
-                </ul>
-                <img src="goods.jpg" alt="チェキ撮影券案内" class="guide-image">
-            </div>
-            <div class="guide-box">
-                <h3>チェキ撮影について</h3>
-                <ul class="guide-list">
-                    <li>ポーズ指定OK！撮影後はスムーズなご移動をお願いします</li>
-                    <li>交流時間もあるので、会話も楽しめます♥</li>
-                    <li>差し入れ、プレゼントOK（食べ物に関しては未開封、常温保存可能なもののみ可能）</li>
-                </ul>
-            </div>
-            <div class="guide-box" style="background: #fff5f8;">
-                <h3>次元維持のためのお願い（注意事項）</h3>
+            
+            <details>
+                <summary>入場について</summary>
+                <div class="details-content">
+                    <ul class="guide-list">
+                        <li>入口受付でチケットを確認</li>
+                        <li>入場の仕方はスタッフの案内に従ってください</li>
+                        <li>お目当てグループを聞かれたら「リアニメイド」とお伝えください</li>
+                        <li>お目当て特典がある会場では特典が受け取れます</li>
+                        <li>ライブ中の撮影ルールは会場ごとに異なります（リアニメイドは基本撮影OK）</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>ライブについて</summary>
+                <div class="details-content">
+                    <img src="guide1.jpg" alt="ライブガイド" class="guide-image">
+                    <p style="font-size: 0.8rem; line-height: 2;">
+                        ペンライト / 手拍子 / コール / 一緒に踊る / 見て楽しむ / 撮影（スマホ・カメラOK） / 推しカメラ / 初見さん / おひとり様でも複数名様でも / その他迷惑行為以外 <strong>全て大歓迎♥</strong>
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>特典会について</summary>
+                <div class="details-content">
+                    <img src="guide2.jpg" alt="特典会ガイド" class="guide-image">
+                    <ul class="guide-list">
+                        <li>お目当て入場特典券をお持ちの方は、リアニメイドスタッフに渡してください</li>
+                        <li>チェキ券を購入（1枚¥1,500）</li>
+                        <li>特典会は現金のみ使用可能なので注意</li>
+                        <li>撮りたいメンバーの列へ並ぶ</li>
+                        <li>最後尾に並んでいる方が最後尾札を持っていたら受け取る</li>
+                        <li>順番が来たらチェキ券を渡す（スタッフの案内に従ってください）</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>チェキ撮影について</summary>
+                <div class="details-content">
+                    <ul class="guide-list">
+                        <li>ポーズ指定OK！撮影後はスムーズなご移動をお願いします</li>
+                        <li>交流時間もあるので、会話も楽しめます♥</li>
+                        <li>差し入れ、プレゼントOK（食べ物に関しては未開封、常温保存可能なもののみ可能）</li>
+                    </ul>
+                    <img src="goods.jpg" alt="チェキ撮影券案内" class="guide-image">
+                </div>
+            </details>
+
+            <div style="background: #fff5f8; border-radius: 20px; padding: 15px; border: 1.5px solid var(--primary-pink); margin-top: 20px;">
+                <h3 style="color: var(--deep-lavender); font-size: 1.1rem; margin-bottom: 10px; border-left: 5px solid var(--primary-pink); padding-left: 10px;">
+                    次元維持のためのお願い<br>（注意事項）
+                </h3>
                 <ul class="guide-list">
                     <li>メンバーへの迷惑行為禁止</li>
                     <li>スタッフの案内にご協力ください</li>
@@ -306,13 +315,20 @@
             </div>
         </section>
 
-        <!-- ⑤ポイントカード -->
+        <!-- ⑤POINT CARD -->
         <section id="passport" data-aos="fade-up">
             <h2 class="section-title">POINT CARD</h2>
+            
+            <div style="text-align: center; font-size: 0.85rem; margin-bottom: 25px; line-height: 1.8;">
+                <p>ライブや特典会に参加して、”次元接続ポイント”を集めよう♡</p>
+                <p>リアニメイドが参加するライブ・イベントの物販で商品をご購入いただくと獲得</p>
+                <p style="font-weight: bold; color: var(--deep-lavender); font-size: 1rem;">お会計¥2,000毎に1ポイント付与</p>
+                <p>ポイントを貯めると、特別な特典と交換できます</p>
+            </div>
+
             <div class="passport-card">
                 <h3>次元接続パスポート<br>（ポイントカード）</h3>
                 <p style="font-size: 0.75rem; opacity: 0.8;">画面の向こう側へ、もっと近づくための接続案内</p>
-                <p style="font-size: 0.8rem; margin-top: 5px; color: var(--primary-pink);">お会計¥2,000ごとに1ポイント付与。</p>
                 <div class="point-table">
                     <div class="point-row"><span>5 pt</span><span>2ショット写メ券</span></div>
                     <div class="point-row"><span>15 pt</span><span>2ショット写メ券</span></div>
@@ -328,14 +344,6 @@
                 <a href="https://lin.ee/nVD7MfS" class="game-btn btn-line" style="padding: 12px 30px; font-size: 0.85rem;">公式LINE 友達追加</a>
             </div>
 
-            <div style="font-size: 0.85rem; padding: 10px;">
-                <p><strong>公式LINEについて</strong></p>
-                <ul class="guide-list">
-                    <li>公式スケジュール</li>
-                    <li>次元接続パスポート<br>（ポイントカード）管理</li>
-                </ul>
-                <p style="margin-top:10px;">などをお届けします♥ 公式X、イベントスケジュールも確認できます！</p>
-            </div>
             <div style="margin-top: 15px; background: #f9f9f9; padding: 15px; border-radius: 15px; font-size: 0.8rem; border: 1px solid #eee;">
                 <p><strong>次元通行許可証とは？</strong></p>
                 <p>リアニメイドとの“次元接続”を証明する特別認定証。選ばれし者だけが手にできる、特別なカードです。</p>
@@ -343,7 +351,7 @@
             </div>
         </section>
 
-        <!-- カレンダー（指定URL） -->
+        <!-- カレンダー -->
         <section id="calendar" data-aos="fade-up">
             <h2 class="section-title">CALENDAR</h2>
             <iframe title="Calendar" src="https://timetreeapp.com/public_calendars/reanimaid/embed/monthly?calendar_name=true&frame_color=%23f35f8c" style="width:100%;min-height:700px;aspect-ratio:680/720;border:none"></iframe>
