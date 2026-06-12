@@ -28,13 +28,6 @@
             line-height: 1.8;
         }
 
-        /* 高品質パーティクルCanvas */
-        #particle-canvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1; pointer-events: none;
-        }
-
         /* サイト全体の背景 & フレーム */
         .site-wrapper {
             position: relative;
@@ -172,13 +165,25 @@
         summary { font-weight: bold; cursor: pointer; outline: none; font-size: 0.95rem; }
         .faq-ans { margin-top: 10px; font-size: 0.9rem; color: #666; }
 
+        /* ⑨CTA セクション用文字調整 */
+        .cta-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--deep-lavender);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        .cta-subtext {
+            font-size: 0.85rem;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
         #cta { text-align: center; }
         footer { text-align: center; padding: 40px 0; min-height: 40px; }
     </style>
 </head>
 <body>
-
-<canvas id="particle-canvas"></canvas>
 
 <div class="site-wrapper">
     <div class="outer-border"></div>
@@ -214,7 +219,7 @@
             </div>
         </section>
 
-        <!-- ③MEMBERS -->
+        <!-- ③メンバー紹介 -->
         <section id="members" data-aos="fade-up">
             <h2 class="section-title">MEMBERS</h2>
             <div class="member-card" data-aos="fade-right">
@@ -246,7 +251,7 @@
             </div>
         </section>
 
-        <!-- ④LIVE GUIDE -->
+        <!-- ④ライブガイド -->
         <section id="guide" data-aos="fade-up">
             <h2 class="section-title">LIVE GUIDE</h2>
             <p style="text-align: center; font-size: 0.8rem; margin-bottom: 20px;">画面の向こう側を、現実で体験するための案内</p>
@@ -299,7 +304,7 @@
             </div>
         </section>
 
-        <!-- ⑤POINT CARD -->
+        <!-- ⑤ポイントカード -->
         <section id="passport" data-aos="fade-up">
             <h2 class="section-title">POINT CARD</h2>
             <div class="passport-card">
@@ -316,7 +321,7 @@
                 </div>
             </div>
 
-            <!-- 修正箇所：ポイントカード管理案内とボタン -->
+            <!-- ポイントカード管理案内とボタン -->
             <div style="text-align: center; margin-bottom: 20px;">
                 <p style="font-weight: bold; font-size: 0.9rem; margin-bottom: 10px;">ポイントカードは公式ラインで管理できます</p>
                 <a href="https://lin.ee/nVD7MfS" class="game-btn btn-line" style="padding: 12px 30px; font-size: 0.85rem;">公式LINE 友達追加</a>
@@ -337,7 +342,7 @@
             </div>
         </section>
 
-        <!-- CALENDAR -->
+        <!-- カレンダー -->
         <section id="calendar" data-aos="fade-up">
             <h2 class="section-title">CALENDAR</h2>
             <p style="text-align: center; font-size: 0.85rem; margin-bottom: 20px;">最新のイベントスケジュールはこちら</p>
@@ -363,10 +368,10 @@
             </details>
         </section>
 
-        <!-- ⑨CTA -->
+        <!-- ⑨CTA（文字サイズ調整済み） -->
         <section id="cta" data-aos="zoom-in">
-            <h2 class="section-title">次元接続を確認しました___</h2>
-            <p style="text-align: center; margin-bottom: 20px;">最新のスケジュールやポイントカード機能も充実</p>
+            <div class="cta-title">次元接続を確認しました___</div>
+            <p class="cta-subtext">最新のスケジュールやポイントカード機能も充実</p>
             <div style="text-align: center;">
                 <a href="https://lin.ee/nVD7MfS" class="game-btn btn-line">公式LINE 友だち追加</a>
             </div>
@@ -379,61 +384,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
     AOS.init({ duration: 1000, once: true });
-
-    /* --- High Quality Particle System --- */
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height, particles;
-
-    const colors = ['rgba(226, 209, 249, ', 'rgba(255, 183, 213, ', 'rgba(255, 255, 255, '];
-
-    class Particle {
-        constructor() { this.init(); }
-        init() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.radius = Math.random() * 2 + 0.5;
-            this.colorBase = colors[Math.floor(Math.random() * colors.length)];
-            this.opacity = Math.random() * 0.5 + 0.1;
-            this.vx = (Math.random() - 0.5) * 0.25;
-            this.vy = (Math.random() - 0.5) * 0.25;
-            this.sparkle = Math.random() > 0.85;
-            this.sparkleLife = Math.random() * Math.PI;
-        }
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            let currentOpacity = this.opacity;
-            if (this.sparkle) {
-                this.sparkleLife += 0.04;
-                currentOpacity += Math.sin(this.sparkleLife) * 0.3;
-            }
-            ctx.fillStyle = this.colorBase + Math.max(0, currentOpacity) + ')';
-            ctx.fill();
-        }
-        update() {
-            this.x += this.vx; this.y += this.vy;
-            if (this.x < 0 || this.x > width) this.vx *= -1;
-            if (this.y < 0 || this.y > height) this.vy *= -1;
-            this.draw();
-        }
-    }
-
-    function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-        particles = Array.from({length: 65}, () => new Particle());
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, width, height);
-        particles.forEach(p => p.update());
-        requestAnimationFrame(animate);
-    }
-
-    window.addEventListener('resize', resize);
-    resize();
-    animate();
 </script>
 </body>
 </html>
