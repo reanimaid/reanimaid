@@ -65,7 +65,7 @@
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             border-radius: 25px;
-            padding: 35px 20px;
+            padding: 30px 20px;
             margin-bottom: 40px;
             border: 1px solid rgba(255, 183, 213, 0.3);
             box-shadow: 0 10px 30px rgba(226, 209, 249, 0.2);
@@ -109,40 +109,40 @@
         }
         .btn-line { background: linear-gradient(135deg, #06C755, #05a34b); animation: glowGreen 2.5s infinite; }
         .btn-live { background: linear-gradient(135deg, var(--soft-lavender), var(--primary-pink)); animation: glowPink 2.5s infinite; }
-
-        @keyframes glowPink {
-            0%, 100% { box-shadow: 0 0 10px rgba(255, 183, 213, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(255, 183, 213, 0.8); }
+        
+        /* SNS用ボタン（すべて薄ピンクで統一） */
+        .sns-container { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
+        .sns-btn {
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            width: 105px; padding: 12px 0; border-radius: 30px;
+            text-decoration: none; font-weight: 800; font-size: 0.7rem; color: #fff;
+            overflow: hidden; 
+            background: linear-gradient(135deg, #ffdeed 0%, #ffb7d5 100%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(255, 183, 213, 0.4), inset 0 0 8px rgba(255,255,255,0.5);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
-        @keyframes glowGreen {
-            0%, 100% { box-shadow: 0 0 10px rgba(6, 199, 85, 0.4); }
-            50% { box-shadow: 0 0 20px rgba(6, 199, 85, 0.7); }
-        }
 
-        .game-btn::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
+        @keyframes glowPink { 0%, 100% { box-shadow: 0 0 10px rgba(255, 183, 213, 0.5); } 50% { box-shadow: 0 0 20px rgba(255, 183, 213, 0.8); } }
+        @keyframes glowGreen { 0%, 100% { box-shadow: 0 0 10px rgba(6, 199, 85, 0.4); } 50% { box-shadow: 0 0 20px rgba(6, 199, 85, 0.7); } }
+
+        .game-btn::after, .sns-btn::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
             background: var(--gem-shine);
         }
-        .game-btn:hover::after {
-            left: 100%;
-            transition: left 0.7s ease-in-out;
-        }
-        .game-btn:hover { transform: scale(1.05); }
+        .game-btn:hover::after, .sns-btn:hover::after { left: 100%; transition: left 0.7s ease-in-out; }
+        .game-btn:hover, .sns-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 183, 213, 0.6); }
 
-        /* ③メンバー紹介 */
-        .member-card {
-            background: #fff; border-radius: 20px; overflow: hidden;
-            margin-bottom: 30px; border: 2px solid var(--soft-lavender);
-        }
+        /* メンバー紹介 */
+        .member-card { background: #fff; border-radius: 20px; overflow: hidden; margin-bottom: 30px; border: 2px solid var(--soft-lavender); }
         .member-img { width: 100%; display: block; }
         .member-info { padding: 20px; text-align: center; }
         .member-name { font-size: 1.4rem; font-weight: 800; }
         .member-color { display: inline-block; padding: 2px 15px; border-radius: 10px; color: #fff; font-size: 0.8rem; margin: 10px 0; }
         .x-button { display: block; width: 140px; margin: 10px auto 0; background: #000; color: #fff; text-decoration: none; padding: 8px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
 
-        /* ④ライブガイド */
+        /* ライブガイド */
         .guide-box { background: #fff; border: 1.5px solid var(--primary-pink); border-radius: 20px; padding: 20px; margin-bottom: 20px; }
         .guide-box h3 { color: var(--deep-lavender); font-size: 1.1rem; margin-bottom: 15px; border-left: 5px solid var(--primary-pink); padding-left: 10px; }
         .guide-list { list-style: none; }
@@ -150,7 +150,7 @@
         .guide-list li::before { content: '♡'; position: absolute; left: 0; color: var(--primary-pink); font-weight: bold; }
         .guide-image { width: 100%; border-radius: 10px; margin: 15px 0; }
 
-        /* ⑤ポイントカード */
+        /* ポイントカード */
         .passport-card {
             background: linear-gradient(135deg, #434343 0%, #000000 100%);
             color: #fff; padding: 30px; border-radius: 20px; text-align: center;
@@ -165,19 +165,9 @@
         summary { font-weight: bold; cursor: pointer; outline: none; font-size: 0.95rem; }
         .faq-ans { margin-top: 10px; font-size: 0.9rem; color: #666; }
 
-        /* ⑨CTA セクション用文字調整 */
-        .cta-title {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--deep-lavender);
-            margin-bottom: 5px;
-            text-align: center;
-        }
-        .cta-subtext {
-            font-size: 0.85rem;
-            text-align: center;
-            margin-bottom: 25px;
-        }
+        /* CTA */
+        .cta-title { font-size: 1.2rem; font-weight: 800; color: var(--deep-lavender); margin-bottom: 5px; text-align: center; }
+        .cta-subtext { font-size: 0.85rem; text-align: center; margin-bottom: 25px; }
 
         #cta { text-align: center; }
         footer { text-align: center; padding: 40px 0; min-height: 40px; }
@@ -190,19 +180,19 @@
 
     <div class="container">
         
-        <!-- ①ファーストビュー -->
+        <!-- ①ファーストビュー（一斉表示） -->
         <section id="hero">
-            <img src="logo.png" alt="リアニメイド" class="hero-logo" data-aos="zoom-in">
-            <div class="hero-copy" data-aos="fade-up">
+            <img src="logo.png" alt="リアニメイド" class="hero-logo" data-aos="zoom-in" data-aos-delay="0">
+            <div class="hero-copy" data-aos="fade-up" data-aos-delay="0">
                 画面の向こう側から、あなたを迎えに来た。<br>
                 現実に、2次元の衝撃を。
             </div>
-            <div data-aos="fade-up" data-aos-delay="200" style="margin-bottom: 20px;">
+            <div data-aos="fade-up" data-aos-delay="0" style="margin-bottom: 20px;">
                 <a href="https://lin.ee/nVD7MfS" class="game-btn btn-line">
                     公式LINE 友だち追加
                 </a>
             </div>
-            <div data-aos="fade-up" data-aos-delay="400">
+            <div data-aos="fade-up" data-aos-delay="0">
                 <a href="https://timetr.ee/p/reanimaid" class="game-btn btn-live">
                     ライブスケジュール
                 </a>
@@ -216,6 +206,18 @@
                 <p>画面の向こう側から、あなたを迎えに来た。<br>現実に、2次元の衝撃を。</p>
                 <p style="margin-top: 15px;">アニメやゲームの世界から飛び出してきたような少女たちが、現実世界であなたと出会う。</p>
                 <p>2次元と現実の境界を超える物語をテーマにしている。</p>
+            </div>
+        </section>
+
+        <!-- OFFICIAL SNS（薄ピンクで統一） -->
+        <section id="official-sns" data-aos="fade-up" style="text-align: center;">
+            <h2 class="section-title">OFFICIAL SNS</h2>
+            <img src="group.jpg" alt="リアニメイド 集合写真" style="width: 100%; border-radius: 15px; margin-bottom: 20px; border: 2px solid var(--soft-lavender);">
+            
+            <div class="sns-container">
+                <a href="https://x.com/reanimaid" class="sns-btn" target="_blank">𝕏 (Twitter)</a>
+                <a href="https://www.tiktok.com/@reanimaid" class="sns-btn" target="_blank">TikTok</a>
+                <a href="https://www.youtube.com/@reanimaid" class="sns-btn" target="_blank">YouTube</a>
             </div>
         </section>
 
@@ -321,7 +323,6 @@
                 </div>
             </div>
 
-            <!-- ポイントカード管理案内とボタン -->
             <div style="text-align: center; margin-bottom: 20px;">
                 <p style="font-weight: bold; font-size: 0.9rem; margin-bottom: 10px;">ポイントカードは公式ラインで管理できます</p>
                 <a href="https://lin.ee/nVD7MfS" class="game-btn btn-line" style="padding: 12px 30px; font-size: 0.85rem;">公式LINE 友達追加</a>
@@ -342,13 +343,10 @@
             </div>
         </section>
 
-        <!-- カレンダー -->
+        <!-- カレンダー（指定URL） -->
         <section id="calendar" data-aos="fade-up">
             <h2 class="section-title">CALENDAR</h2>
-            <p style="text-align: center; font-size: 0.85rem; margin-bottom: 20px;">最新のイベントスケジュールはこちら</p>
-            <div style="text-align: center;">
-                <a href="https://timetr.ee/p/reanimaid" class="game-btn btn-live">カレンダーを開く</a>
-            </div>
+            <iframe title="Calendar" src="https://timetreeapp.com/public_calendars/reanimaid/embed/monthly?calendar_name=true&frame_color=%23f35f8c" style="width:100%;min-height:700px;aspect-ratio:680/720;border:none"></iframe>
         </section>
 
         <!-- ⑥FAQ -->
@@ -368,7 +366,7 @@
             </details>
         </section>
 
-        <!-- ⑨CTA（文字サイズ調整済み） -->
+        <!-- ⑨CTA -->
         <section id="cta" data-aos="zoom-in">
             <div class="cta-title">次元接続を確認しました___</div>
             <p class="cta-subtext">最新のスケジュールやポイントカード機能も充実</p>
@@ -383,7 +381,11 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
-    AOS.init({ duration: 1000, once: true });
+    AOS.init({ 
+        duration: 1000, 
+        once: true,
+        easing: 'ease-out-back'
+    });
 </script>
 </body>
 </html>
