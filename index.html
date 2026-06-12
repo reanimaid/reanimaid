@@ -119,15 +119,23 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        @keyframes glowPink { 0%, 100% { box-shadow: 0 0 10px rgba(255, 183, 213, 0.5); } 50% { box-shadow: 0 0 20px rgba(255, 183, 213, 0.8); } }
-        @keyframes glowGreen { 0%, 100% { box-shadow: 0 0 10px rgba(6, 199, 85, 0.4); } 50% { box-shadow: 0 0 20px rgba(6, 199, 85, 0.7); } }
-
         .game-btn::after, .sns-btn::after {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
             background: var(--gem-shine);
         }
         .game-btn:hover::after, .sns-btn:hover::after { left: 100%; transition: left 0.7s ease-in-out; }
         .game-btn:hover, .sns-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 183, 213, 0.6); }
+
+        /* 重要項目の強調（薄ピンク背景＋白文字） */
+        .text-highlight-pink {
+            background-color: var(--primary-pink); /* ご指示の通り薄ピンクへ変更 */
+            color: #ffffff;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0 2px;
+        }
 
         /* メンバー紹介 */
         .member-card { background: #fff; border-radius: 20px; overflow: hidden; margin-bottom: 30px; border: 2px solid var(--soft-lavender); }
@@ -160,9 +168,6 @@
         .passport-card h3 { font-size: 1.4rem; margin-bottom: 5px; color: var(--primary-pink); line-height: 1.4; }
         .point-table { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-top: 15px; }
         .point-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.2); font-size: 0.9rem; }
-
-        .cta-title { font-size: 1.2rem; font-weight: 800; color: var(--deep-lavender); margin-bottom: 5px; text-align: center; }
-        .cta-subtext { font-size: 0.85rem; text-align: center; margin-bottom: 25px; }
 
         #cta { text-align: center; }
         footer { text-align: center; padding: 40px 0; min-height: 40px; }
@@ -198,7 +203,7 @@
             <h2 class="section-title">CONCEPT</h2>
             <div style="text-align: center; font-size: 0.9rem;">
                 <p>画面の向こう側から、あなたを迎えに来た。<br>現実に、2次元の衝撃を。</p>
-                <p style="margin-top: 15px;">アニメやゲームの世界から飛び出してきたような少女たちが、現実世界であなたと出会う。</p>
+                <p style="margin-top: 15px;">アニメやゲームの世界から飛び出してきたような少女たちたちが、現実世界であなたと出会う。</p>
                 <p>2次元と現実の境界を超える物語をテーマにしている。</p>
             </div>
         </section>
@@ -207,7 +212,6 @@
         <section id="official-sns" data-aos="fade-up" style="text-align: center;">
             <h2 class="section-title">OFFICIAL SNS</h2>
             <img src="group.jpg" alt="リアニメイド 集合写真" style="width: 100%; border-radius: 15px; margin-bottom: 20px; border: 2px solid var(--soft-lavender);">
-            
             <div class="sns-container">
                 <a href="https://x.com/reanimaid" class="sns-btn" target="_blank">𝕏 (Twitter)</a>
                 <a href="https://www.tiktok.com/@reanimaid" class="sns-btn" target="_blank">TikTok</a>
@@ -258,9 +262,8 @@
                     <ul class="guide-list">
                         <li>入口受付でチケットを確認</li>
                         <li>入場の仕方はスタッフの案内に従ってください</li>
-                        <li>お目当てグループを聞かれたら「リアニメイド」とお伝えください</li>
+                        <li>お目当てグループを聞かれたら「<span class="text-highlight-pink">リアニメイド</span>」とお伝えください</li>
                         <li>お目当て特典がある会場では特典が受け取れます</li>
-                        <li>ライブ中の撮影ルールは会場ごとに異なります（リアニメイドは基本撮影OK）</li>
                     </ul>
                 </div>
             </details>
@@ -268,10 +271,12 @@
             <details>
                 <summary>ライブについて</summary>
                 <div class="details-content">
-                    <img src="guide1.jpg" alt="ライブガイド" class="guide-image">
-                    <p style="font-size: 0.8rem; line-height: 2;">
+                    <p style="font-size: 0.8rem; line-height: 2; margin-bottom: 15px;">
                         ペンライト / 手拍子 / コール / 一緒に踊る / 見て楽しむ / 撮影（スマホ・カメラOK） / 推しカメラ / 初見さん / おひとり様でも複数名様でも / その他迷惑行為以外 <strong>全て大歓迎♥</strong>
                     </p>
+                    <ul class="guide-list">
+                        <li>ライブ中の撮影ルールは会場ごとに異なります（<span class="text-highlight-pink">リアニメイドは基本撮影OK</span>）</li>
+                    </ul>
                 </div>
             </details>
 
@@ -282,7 +287,7 @@
                     <ul class="guide-list">
                         <li>お目当て入場特典券をお持ちの方は、リアニメイドスタッフに渡してください</li>
                         <li>チェキ券を購入（1枚¥1,500）</li>
-                        <li>特典会は現金のみ使用可能なので注意</li>
+                        <li>特典会は<span class="text-highlight-pink">現金のみ使用可能</span>なので注意</li>
                         <li>撮りたいメンバーの列へ並ぶ</li>
                         <li>最後尾に並んでいる方が最後尾札を持っていたら受け取る</li>
                         <li>順番が来たらチェキ券を渡す（スタッフの案内に従ってください）</li>
@@ -296,7 +301,7 @@
                     <ul class="guide-list">
                         <li>ポーズ指定OK！撮影後はスムーズなご移動をお願いします</li>
                         <li>交流時間もあるので、会話も楽しめます♥</li>
-                        <li>差し入れ、プレゼントOK（食べ物に関しては未開封、常温保存可能なもののみ可能）</li>
+                        <li><span class="text-highlight-pink">差し入れ、プレゼントOK</span>（食べ物に関しては未開封、常温保存可能なもののみ可能）</li>
                     </ul>
                     <img src="goods.jpg" alt="チェキ撮影券案内" class="guide-image">
                 </div>
@@ -318,14 +323,12 @@
         <!-- ⑤POINT CARD -->
         <section id="passport" data-aos="fade-up">
             <h2 class="section-title">POINT CARD</h2>
-            
             <div style="text-align: center; font-size: 0.85rem; margin-bottom: 25px; line-height: 1.8;">
                 <p>ライブや特典会に参加して、”次元接続ポイント”を集めよう♡</p>
                 <p>リアニメイドが参加するライブ・イベントの物販で商品をご購入いただくと獲得</p>
                 <p style="font-weight: bold; color: var(--deep-lavender); font-size: 1rem;">お会計¥2,000毎に1ポイント付与</p>
                 <p>ポイントを貯めると、特別な特典と交換できます</p>
             </div>
-
             <div class="passport-card">
                 <h3>次元接続パスポート<br>（ポイントカード）</h3>
                 <p style="font-size: 0.75rem; opacity: 0.8;">画面の向こう側へ、もっと近づくための接続案内</p>
@@ -338,12 +341,17 @@
                     <div class="point-row" style="border:none; font-weight:bold; color:var(--primary-pink);"><span>50 pt</span><span>次元通行許可証引換券</span></div>
                 </div>
             </div>
-
             <div style="text-align: center; margin-bottom: 20px;">
                 <p style="font-weight: bold; font-size: 0.9rem; margin-bottom: 10px;">ポイントカードは公式ラインで管理できます</p>
                 <a href="https://lin.ee/nVD7MfS" class="game-btn btn-line" style="padding: 12px 30px; font-size: 0.85rem;">公式LINE 友達追加</a>
             </div>
-
+            <div style="font-size: 0.85rem; padding: 10px;">
+                <p><strong>公式LINE</strong></p>
+                <ul class="guide-list">
+                    <li>公式スケジュール</li>
+                    <li>次元接続パスポート<br>（ポイントカード）管理</li>
+                </ul>
+            </div>
             <div style="margin-top: 15px; background: #f9f9f9; padding: 15px; border-radius: 15px; font-size: 0.8rem; border: 1px solid #eee;">
                 <p><strong>次元通行許可証とは？</strong></p>
                 <p>リアニメイドとの“次元接続”を証明する特別認定証。選ばれし者だけが手にできる、特別なカードです。</p>
