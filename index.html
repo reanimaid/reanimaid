@@ -133,6 +133,19 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
+        /* ライブガイド：キーワードバッジ */
+        .welcome-badge-container {
+            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 5px;
+        }
+        .welcome-badge {
+            background: #ffffff; color: var(--deep-lavender); border: 1px solid var(--primary-pink);
+            padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold;
+            box-shadow: 0 2px 5px rgba(255, 183, 213, 0.1);
+        }
+        .welcome-message {
+            text-align: center; font-weight: 800; color: var(--primary-pink); font-size: 0.95rem; margin-top: 20px;
+        }
+
         /* メンバー紹介 */
         .member-card { background: #fff; border-radius: 20px; overflow: hidden; margin-bottom: 30px; border: 2px solid var(--soft-lavender); }
         .member-img { width: 100%; display: block; }
@@ -283,10 +296,22 @@
             <details>
                 <summary>ライブについて</summary>
                 <div class="details-content">
-                    <p style="font-size: 0.8rem; line-height: 2; margin-bottom: 15px;">
-                        ペンライト / 手拍子 / コール / 一緒に踊る / 見て楽しむ / 撮影（スマホ・カメラOK） / 推しカメラ / 初見さん / おひとり様でも複数名様でも / その他迷惑行為以外 <strong>全て大歓迎♥</strong>
-                    </p>
-                    <ul class="guide-list">
+                    <div class="welcome-badge-container">
+                        <span class="welcome-badge">ペンライト</span>
+                        <span class="welcome-badge">手拍子</span>
+                        <span class="welcome-badge">コール</span>
+                        <span class="welcome-badge">名前を叫ぶ</span> <!-- 新項目 -->
+                        <span class="welcome-badge">一緒に踊る</span>
+                        <span class="welcome-badge">見て楽しむ</span>
+                        <span class="welcome-badge">撮影（スマホ・カメラOK）</span> <!-- 修正項目 -->
+                        <span class="welcome-badge">推しカメラ</span>
+                        <span class="welcome-badge">初見さん</span>
+                        <span class="welcome-badge">おひとり様</span>
+                        <span class="welcome-badge">複数名様</span>
+                    </div>
+                    <p class="welcome-message">その他迷惑行為以外 全て大歓迎♥</p>
+                    
+                    <ul class="guide-list" style="margin-top: 15px;">
                         <li>ライブ中の撮影ルールは会場ごとに異なります（<span class="text-highlight-pink">リアニメイドは基本撮影OK</span>）</li>
                     </ul>
                 </div>
@@ -404,7 +429,7 @@
 <div id="pwa-install-prompt" class="pwa-prompt">
     <div class="pwa-content">
         <div class="pwa-header">
-            <p class="pwa-title">✨ このページをホーム画面に保存</p>
+            <p class="pwa-title">このページをホーム画面に保存</p>
             <button class="pwa-close" onclick="closePwaPrompt()">×</button>
         </div>
         <p class="pwa-text">ホーム画面に追加すると、いつでも瞬時に”次元接続”ができるようになります♡</p>
